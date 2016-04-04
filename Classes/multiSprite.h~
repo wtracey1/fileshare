@@ -1,0 +1,12 @@
+#ifndef __DRAWABLE__
+#define __DRAWABLE__
+
+#include "cocos2d.h"
+
+class MultiSprite {
+public:
+  virtual void update(float);
+  virtual ~MultiSprite();
+private:
+
+}

@@ -1,0 +1,80 @@
+#include "flockingSprite.h"
+#include "gamedata.h"
+#include "frameFactory.h"
+#include <iostream>
+#include <list>
+#include <ctime>
+
+FlockingSprite::~FlockingSprite()
+{
+  std::list<AgentSprite*>::const_iterator ptr = flock.begin();
+  while (ptr != flock.end()){
+    delete *ptr;
+    ++ptr;
+  }
+}
+
+FlockingSprite::FlockingSprite( const std::string& name, const Sprite& agentTemplate) : 
+  Drawable(name,
+           Vector2f(0,0), 
+           Vector2f(0,0)
+  ),
+  flock(),
+  alignmentFactor(Gamedata::getInstance().getXmlInt(name+"/alignment")),
+  cohesionFactor(Gamedata::getInstance().getXmlInt(name+"/cohesion")),
+  seperationFactor(Gamedata::getInstance().getXmlInt(name+"/seperation"))
+{ 
+  int count = Gamedata::getInstance().getXmlInt(name+"/count");
+  int width = Gamedata::getInstance().getXmlInt("world/width");
+  int height = Gamedata::getInstance().getXmlInt("world/height");
+  int x,y;
+  //AgentSprite* a = NULL;
+  for(int i = 0; i < count; ++i){
+    x = rand() % (width - agentTemplate.getFrame()->getWidth());
+    y = rand() % (height - agentTemplate.getFrame()->getHeight());
+    //a = new AgentSprite(agentTemplate, Vector2f(x,y));
+    //std::cout << "Setting x,y to: " << x << ", " << y << std::endl;
+    //a->X(x);
+    //a->Y(y);
+    flock.push_back(new AgentSprite(agentTemplate, Vector2f(x,y)));
+  }
+
+
+}
+FlockingSprite::FlockingSprite(const FlockingSprite& s) : 
+  Drawable(s),
+  flock(s.flock),
+  alignmentFactor(s.alignmentFactor),
+  cohesionFactor(s.cohesionFactor),
+  seperationFactor(s.seperationFactor)
+{ }
+
+void FlockingSprite::detach(AgentSprite *a){
+  std::list<AgentSprite*>::iterator ptr = flock.begin();
+  while (ptr != flock.end()){
+    if(*ptr == a){
+      delete *ptr;
+      ptr = flock.erase(ptr);
+      return;
+    }
+    ++ptr;
+  }
+}
+
+void FlockingSprite::draw() const {
+  std::list<AgentSprite*>::const_iterator ptr = flock.begin();
+  while (ptr != flock.end()){
+    (*ptr)->draw();
+    ++ptr;
+  }
+}
+
+void FlockingSprite::update(Uint32 ticks) {
+  std::list<AgentSprite*>::iterator ptr = flock.begin();
+  while (ptr != flock.end()){
+    (*ptr)->update(flock, alignmentFactor/10, cohesionFactor/10, seperationFactor/10, ticks);
+    ++ptr;
+  }
+  if(!flock.empty())
+    setPosition(flock.front()->getPosition());
+}
