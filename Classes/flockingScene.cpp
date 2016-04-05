@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "customSprite.h"
 #include "multiSprite.h"
+#include "bidirectionalMultiSprite.h"
 #include <vector>
 
 FlockingScene::FlockingScene() : 
@@ -104,7 +105,7 @@ bool FlockingScene::init() {
   birdFrames.push_back("redBird2.png");
   birdFrames.push_back("redBird3.png");
   birdFrames.push_back("redBird4.png");
-  MultiSprite* bird = new MultiSprite(birdFrames, 0.2F, cocos2d::Vec2(50,50), cocos2d::Vec2(100,100));
+  MultiSprite* bird = new BidirectionalMultiSprite(birdFrames, 0.2F, cocos2d::Vec2(50,50), cocos2d::Vec2(100,100));
   bird->addToNode(this, 0);
   drawables.push_back(bird);
   

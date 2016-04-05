@@ -11,6 +11,7 @@ MultiSprite::MultiSprite(std::vector<std::string> frameNames, float speed, cocos
   std::vector<std::string>::const_iterator ptr = frameNames.begin();
   while(ptr != frameNames.end()){
     frames.pushBack(cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName(*ptr));
+    ++ptr;
   }
   
   cocos2d::Animation* animation = cocos2d::Animation::createWithSpriteFrames(frames, speed);
@@ -18,8 +19,8 @@ MultiSprite::MultiSprite(std::vector<std::string> frameNames, float speed, cocos
   sprite->runAction(cocos2d::RepeatForever::create(animate));
 }
 
-void MultiSprite::update(float){
-  
+void MultiSprite::update(float dt){
+  CustomSprite::update(dt);
 }
 //virtual MultiSprite::~MultiSprite(){};
 

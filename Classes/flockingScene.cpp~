@@ -1,6 +1,8 @@
 #include "flockingScene.h"
 #include "SimpleAudioEngine.h"
 #include "customSprite.h"
+#include "multiSprite.h"
+#include "bidirectionalMultiSprite.h"
 #include <vector>
 
 FlockingScene::FlockingScene() : 
