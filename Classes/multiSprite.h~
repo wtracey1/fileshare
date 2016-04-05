@@ -1,12 +1,16 @@
-#ifndef __DRAWABLE__
-#define __DRAWABLE__
+#ifndef __MULTISPRITE__
+#define __MULTISPRITE__
 
 #include "cocos2d.h"
+#include "vector"
+#include "customSprite.h"
 
-class MultiSprite {
+class MultiSprite : public CustomSprite{
 public:
+  MultiSprite(std::vector<std::string>, cocos2d::Vec2 pos, cocos2d::Vec2 vel);
   virtual void update(float);
-  virtual ~MultiSprite();
+  virtual ~MultiSprite(){}//EDIT
 private:
 
-}
+};
+#endif

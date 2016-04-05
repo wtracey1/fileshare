@@ -2,13 +2,21 @@
 #define __FLOCKING_SCENE__
 
 #include "cocos2d.h"
+#include "drawable.h"
+#include <list>
 //#include "star.h"
 
 class FlockingScene : public cocos2d::Layer
 {
 public:
   FlockingScene();
-  //~FlockingScene() { delete star; }
+  ~FlockingScene() { 
+    std::list<Drawable*>::iterator ptr = drawables.begin();
+    while(ptr != drawables.end()){
+      delete *ptr;//really no need to erase from the list, its about to get destroyed
+      ++ptr;
+    }
+  }
   static cocos2d::Scene* createScene();
   virtual bool init();
   void update(float);
@@ -22,6 +30,8 @@ public:
 private:
 
   cocos2d::Size visibleSize;
+  cocos2d::Point origin;
+  std::list<Drawable*> drawables;
 };
 
 #endif
