@@ -8,7 +8,7 @@ public:
   //const cocos2d:Vec2 const pos(){
     //return position;
   //}
-
+  virtual Drawable* clone() const = 0;
   virtual void update(float) = 0;
   virtual void addToNode(cocos2d::Node*, int x) = 0;
   virtual void removeFromNode(cocos2d::Node*) = 0;

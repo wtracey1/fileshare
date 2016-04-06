@@ -19,5 +19,8 @@ MultiSprite::MultiSprite(std::vector<std::string> frameNames, float speed, cocos
   sprite->runAction(cocos2d::RepeatForever::create(animate));
 }
 
+void MultiSprite::update(float dt){
+  CustomSprite::update(dt);
+}
 //virtual MultiSprite::~MultiSprite(){};
 

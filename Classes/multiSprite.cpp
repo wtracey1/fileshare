@@ -2,7 +2,7 @@
 #include "multiSprite.h"
 #include "vector"
 
-MultiSprite::MultiSprite(std::vector<std::string> frameNames, float speed, cocos2d::Vec2 pos, cocos2d::Vec2 vel) :
+MultiSprite::MultiSprite(const std::vector<std::string>& frameNames, float speed, const cocos2d::Vec2& pos, const cocos2d::Vec2& vel) :
     CustomSprite(frameNames[0], pos, vel)
 {
   cocos2d::Vector<cocos2d::SpriteFrame*> frames;

@@ -1,0 +1,159 @@
+<?xml version = "1.0"?>
+<GameData>
+<!-- screenTitle is also used to identify you and your animation. 
+     So make sure to include your name as part of the screenTitle -->
+<screenTitle>Weston Tracey's Bird Animation</screenTitle>
+<maxStringSize>50</maxStringSize>
+
+<frameCap>60</frameCap>
+<framesAreCapped>true</framesAreCapped>
+
+<frameMax>400</frameMax>
+<username>wtracey</username>
+
+<sloMoFactor>4</sloMoFactor>
+
+<view>
+  <width>1000</width>
+  <height>480</height>
+</view>
+<world>
+  <width>2500</width>
+  <height>480</height>
+</world>
+<sky>
+  <file>images/sky.jpg</file>
+  <factor>2</factor>
+  <transparency>true</transparency>
+</sky>
+<city>
+  <file>images/skyline.png</file>
+  <factor>1</factor>
+  <transparency>true</transparency>
+</city>
+<font name="font">
+  <file>font/dyslexic-bold.otf</file>
+  <size>16</size>
+  <red>255</red>
+  <green>255</green>
+  <blue>255</blue>
+  <unused>0</unused>
+</font>
+<moon>
+<file>images/moon.png</file>
+  <startLoc x="800" y="50"/>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</moon>
+<star1>
+<file>images/star.png</file>
+  <startLoc x="350" y="50"/>
+  <frames>4</frames>
+  <frameInterval>300</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</star1>
+<star2>
+<file>images/star.png</file>
+  <startLoc x="1000" y="160"/>
+  <frames>4</frames>
+  <frameInterval>300</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</star2>
+<star3>
+<file>images/star.png</file>
+  <startLoc x="1340" y="92"/>
+  <frames>4</frames>
+  <frameInterval>300</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</star3>
+<star4>
+<file>images/star.png</file>
+  <startLoc x="100" y="62"/>
+  <frames>4</frames>
+  <frameInterval>300</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</star4>
+<star5>
+<file>images/star.png</file>
+  <startLoc x="740" y="110"/>
+  <frames>4</frames>
+  <frameInterval>300</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</star5>
+<star6>
+<file>images/star.png</file>
+  <startLoc x="420" y="20"/>
+  <frames>4</frames>
+  <frameInterval>300</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <transparency>true</transparency>
+</star6>
+
+<grayBirds>
+  <count>40</count>
+  <alignment>6</alignment>
+  <cohesion>6</cohesion>
+  <seperation>6</seperation>
+</grayBirds>
+<bird>
+  <file>images/bird-Bidirectional.png</file>
+  <startLoc x="350" y="50"/>
+  <frames>8</frames>
+  <frameInterval>150</frameInterval>
+  <speedX>100</speedX>
+  <speedY>100</speedY>
+  <maxSpeedX>200</maxSpeedX>
+  <maxSpeedY>200</maxSpeedY>
+  <LoS>300</LoS>
+  <transparency>true</transparency>
+</bird>
+<redBirds>
+  <count>60</count>
+  <alignment>1</alignment>
+  <cohesion>1</cohesion>
+  <seperation>1</seperation>
+</redBirds>
+<redbird>
+  <file>images/redbird-Bidirectional.png</file>
+  <startLoc x="350" y="50"/>
+  <frames>8</frames>
+  <frameInterval>100</frameInterval>
+  <speedX>0</speedX>
+  <speedY>0</speedY>
+  <maxSpeedX>400</maxSpeedX>
+  <maxSpeedY>400</maxSpeedY>
+  <LoS>200</LoS>
+  <transparency>true</transparency>
+</redbird>
+<blueBirds>
+  <count>10</count>
+  <alignment>20</alignment>
+  <cohesion>20</cohesion>
+  <seperation>20</seperation>
+</blueBirds>
+<bluebird>
+  <file>images/bluebird-Bidirectional.png</file>
+  <startLoc x="350" y="50"/>
+  <frames>8</frames>
+  <frameInterval>200</frameInterval>
+  <speedX>100</speedX>
+  <speedY>100</speedY>
+  <maxSpeedX>120</maxSpeedX>
+  <maxSpeedY>120</maxSpeedY>
+  <LoS>600</LoS>
+  <transparency>true</transparency>
+</bluebird>
+
+</GameData>

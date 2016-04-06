@@ -10,7 +10,7 @@ public:
   CustomSprite(const std::string&);
   CustomSprite(const std::string&, cocos2d::Vec2);
   CustomSprite(const std::string&, cocos2d::Vec2, cocos2d::Vec2);
-  CustomSprite(const CustomSprite& s);
+  //CustomSprite(const CustomSprite& s);
   void update(float);
   virtual ~CustomSprite();
   virtual void addToNode(cocos2d::Node*, int z = 0);
@@ -24,7 +24,7 @@ public:
   virtual float dx(){return velocity.x;}
   virtual float dy(){return velocity.y;}
   virtual void setPosition(cocos2d::Vec2 pos){sprite->setPosition(pos);}
-  virtual void setVelocity(cocos2d::Vec2 vel);
+  virtual void setVelocity(cocos2d::Vec2 vel){velocity = vel;}
   virtual cocos2d::Vec2 getPosition(){return sprite->getPosition();}
   virtual cocos2d::Vec2 getVelocity(){return velocity;}
 protected:

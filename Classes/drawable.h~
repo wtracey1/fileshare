@@ -20,8 +20,8 @@ public:
   virtual void dy(float) = 0;
   virtual float dx() = 0;
   virtual float dy() = 0;
-  virtual void setPosition(cocos2d::Vec2);
-  virtual void setVelocity(cocos2d::Vec2);
+  virtual void setPosition(cocos2d::Vec2) = 0;
+  virtual void setVelocity(cocos2d::Vec2) = 0;
   virtual cocos2d::Vec2 getPosition() = 0;
   virtual cocos2d::Vec2 getVelocity() = 0;
   virtual ~Drawable() { };

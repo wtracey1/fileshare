@@ -7,7 +7,7 @@
 
 class MultiSprite : public CustomSprite{
 public:
-  MultiSprite(std::vector<std::string>, float, cocos2d::Vec2, cocos2d::Vec2);
+  MultiSprite(const std::vector<std::string>&, float, const cocos2d::Vec2&, const cocos2d::Vec2&);
   virtual void update(float);
   virtual ~MultiSprite(){}//EDIT
 };

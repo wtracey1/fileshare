@@ -22,7 +22,10 @@ CustomSprite::CustomSprite(const std::string& spriteName, cocos2d::Vec2 pos, coc
 {
   sprite->setPosition(pos);
 }
-CustomSprite::CustomSprite(const CustomSprite& s){} //EDIT
+/*CustomSprite::CustomSprite(const CustomSprite& s){
+  viewSize = s.viewSize;
+  
+}*/
 
 CustomSprite::~CustomSprite(){}
 

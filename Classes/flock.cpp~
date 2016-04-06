@@ -5,7 +5,7 @@
 #include <list>
 #include <ctime>
 
-FlockingSprite::~FlockingSprite()
+Flock::~Flock()
 {
   std::list<AgentSprite*>::const_iterator ptr = flock.begin();
   while (ptr != flock.end()){
@@ -14,11 +14,7 @@ FlockingSprite::~FlockingSprite()
   }
 }
 
-FlockingSprite::FlockingSprite( const std::string& name, const Sprite& agentTemplate) : 
-  Drawable(name,
-           Vector2f(0,0), 
-           Vector2f(0,0)
-  ),
+Flock::Flock( const std::string& name, const CustomSprite& agentTemplate) : 
   flock(),
   alignmentFactor(Gamedata::getInstance().getXmlInt(name+"/alignment")),
   cohesionFactor(Gamedata::getInstance().getXmlInt(name+"/cohesion")),
@@ -28,21 +24,16 @@ FlockingSprite::FlockingSprite( const std::string& name, const Sprite& agentTemp
   int width = Gamedata::getInstance().getXmlInt("world/width");
   int height = Gamedata::getInstance().getXmlInt("world/height");
   int x,y;
-  //AgentSprite* a = NULL;
+  //Randomly place agentSprites on map
   for(int i = 0; i < count; ++i){
     x = rand() % (width - agentTemplate.getFrame()->getWidth());
     y = rand() % (height - agentTemplate.getFrame()->getHeight());
-    //a = new AgentSprite(agentTemplate, Vector2f(x,y));
-    //std::cout << "Setting x,y to: " << x << ", " << y << std::endl;
-    //a->X(x);
-    //a->Y(y);
     flock.push_back(new AgentSprite(agentTemplate, Vector2f(x,y)));
   }
 
 
 }
-FlockingSprite::FlockingSprite(const FlockingSprite& s) : 
-  Drawable(s),
+FlockingSprite::FlockingSprite(const FlockingSprite& s) :
   flock(s.flock),
   alignmentFactor(s.alignmentFactor),
   cohesionFactor(s.cohesionFactor),
@@ -61,20 +52,10 @@ void FlockingSprite::detach(AgentSprite *a){
   }
 }
 
-void FlockingSprite::draw() const {
-  std::list<AgentSprite*>::const_iterator ptr = flock.begin();
-  while (ptr != flock.end()){
-    (*ptr)->draw();
-    ++ptr;
-  }
-}
-
-void FlockingSprite::update(Uint32 ticks) {
+void FlockingSprite::update(float dt) {
   std::list<AgentSprite*>::iterator ptr = flock.begin();
   while (ptr != flock.end()){
-    (*ptr)->update(flock, alignmentFactor/10, cohesionFactor/10, seperationFactor/10, ticks);
+    (*ptr)->update(flock, alignmentFactor/10, cohesionFactor/10, seperationFactor/10, dt);
     ++ptr;
   }
-  if(!flock.empty())
-    setPosition(flock.front()->getPosition());
 }

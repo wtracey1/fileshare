@@ -17,7 +17,7 @@ public:
   
 private:
   CustomSprite* baseSprite;
-  const int speed;
+  const int maxSpeed;
   int los;
   AgentSprite& operator=(const AgentSprite&);
   cocos2d::Vec2 computeAlignment(const std::list<AgentSprite*>& flock);

@@ -22,7 +22,7 @@ CustomSprite::CustomSprite(const std::string& spriteName, cocos2d::Vec2 pos, coc
 {
   sprite->setPosition(pos);
 }
-CustomSprite::CustomSprite(const CustomSprite& s){} //EDIT
+//CustomSprite::CustomSprite(const CustomSprite& s){} //EDIT
 
 CustomSprite::~CustomSprite(){}
 
@@ -40,7 +40,7 @@ void CustomSprite::update(float dt){
 
   cocos2d::Point location = sprite->getPosition();
   int width = sprite->getContentSize().width;
-  int height = sprite->getContentSize().height
+  int height = sprite->getContentSize().height;
   
   if ( location.x > viewSize.width - width/2 ) {
     velocity.x = -abs(velocity.x);

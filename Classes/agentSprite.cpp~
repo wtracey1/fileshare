@@ -18,12 +18,18 @@ AgentSprite::AgentSprite(const CustomSprite& s, const cocos2d::Vec2 initPosition
 { 
   baseSprite->setPosition(initPosition);
 }
-AgentSprite::AgentSprite(const AgentSprite& s) :
+AgentSprite::AgentSprite(const AgentSprite& s) : 
+  Drawable(s),
   baseSprite(s.baseSprite->clone()),
   speed(Gamedata::getInstance().getXmlInt(s.getName()+"/speed"), 
             Gamedata::getInstance().getXmlInt(s.getName()+"/speed")),
   los(Gamedata::getInstance().getXmlInt(s.getName()+"/LoS"))
 { }
+
+void AgentSprite::draw() const {
+  baseSprite->draw();
+}
+
 //Utility functions to syncronize the position and velocity updating that occurs in the baseSprite and in the agentSprite wrapping it
 void AgentSprite::syncToBase(){
   baseSprite->setVelocity(getVelocity());

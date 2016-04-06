@@ -10,7 +10,7 @@ public:
   CustomSprite(const std::string&);
   CustomSprite(const std::string&, cocos2d::Vec2);
   CustomSprite(const std::string&, cocos2d::Vec2, cocos2d::Vec2);
-  CustomSprite(const CustomSprite& s);
+  //CustomSprite(const CustomSprite& s);
   void update(float);
   virtual ~CustomSprite();
   virtual void addToNode(cocos2d::Node*, int z = 0);
