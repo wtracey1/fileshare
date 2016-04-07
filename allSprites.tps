@@ -217,6 +217,7 @@
             <key type="filename">grayBird7.png</key>
             <key type="filename">grayBird8.png</key>
             <key type="filename">moon.png</key>
+            <key type="filename">pole.png</key>
             <key type="filename">redBird1.png</key>
             <key type="filename">redBird2.png</key>
             <key type="filename">redBird3.png</key>
@@ -231,6 +232,7 @@
             <key type="filename">star2.png</key>
             <key type="filename">star3.png</key>
             <key type="filename">star4.png</key>
+            <key type="filename">windmill.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -269,6 +271,8 @@
             <filename>star3.png</filename>
             <filename>star4.png</filename>
             <filename>sky.png</filename>
+            <filename>pole.png</filename>
+            <filename>windmill.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
