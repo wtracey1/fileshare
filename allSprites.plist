@@ -379,18 +379,18 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>sky.jpg</key>
+            <key>sky.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
                 <key>spriteOffset</key>
                 <string>{0,0}</string>
                 <key>spriteSize</key>
-                <string>{1280,480}</string>
+                <string>{1280,768}</string>
                 <key>spriteSourceSize</key>
-                <string>{1280,480}</string>
+                <string>{1280,768}</string>
                 <key>textureRect</key>
-                <string>{{0,128},{1280,480}}</string>
+                <string>{{0,128},{1280,768}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -405,7 +405,7 @@
                 <key>spriteSourceSize</key>
                 <string>{1726,480}</string>
                 <key>textureRect</key>
-                <string>{{0,608},{1726,480}}</string>
+                <string>{{0,896},{1726,480}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -481,9 +481,9 @@
             <key>realTextureFileName</key>
             <string>allSprites.png</string>
             <key>size</key>
-            <string>{1726,1088}</string>
+            <string>{1726,1376}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a869b858c9355d838bebeb63a6c8a7dc:e67871d1ebfbab2c7abf4171b6c3e4f2:2492531ea9ed5fe0891d1276e8d71709$</string>
+            <string>$TexturePacker:SmartUpdate:f0dee2a42b144fa9a8c3ba9e5baa9220:e41f3dba16a4a4b8654ef4f58dbf8c00:2492531ea9ed5fe0891d1276e8d71709$</string>
             <key>textureFileName</key>
             <string>allSprites.png</string>
         </dict>
