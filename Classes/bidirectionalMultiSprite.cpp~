@@ -8,7 +8,7 @@ void BidirectionalMultiSprite::update(float dt){
   
   //dot product of x and y / (magnitude(x)*magnitude(y)) gives degrees for rotation
   int angle = static_cast<int>(CC_RADIANS_TO_DEGREES(getVelocity().getAngle()));
-  std::cout << angle <<std::endl;
+  //std::cout << angle <<std::endl;
   
   if(dx() < 0){
     sprite->setFlippedX(false);

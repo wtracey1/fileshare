@@ -2,7 +2,6 @@
 #define GAMEDATA__H
 #include <string>
 #include <map>
-#include "vector2f.h"
 #include "parseXML.h"
 
 class Gamedata {
@@ -22,7 +21,7 @@ private:
   ParseXML parser;
   const map<std::string, std::string> gameData;
 
-  Gamedata(const std::string& fn = "xmlSpec/game.xml");
+  Gamedata(const std::string& fn = "/home/wtracey/class/project4/Resources/xmlSpec/game.xml");
   Gamedata(const Gamedata&);
   Gamedata& operator=(const Gamedata&);
 };

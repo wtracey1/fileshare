@@ -3,6 +3,7 @@
 #include "customSprite.h"
 #include "multiSprite.h"
 #include "bidirectionalMultiSprite.h"
+#include "flock.h"
 #include <vector>
 
 FlockingScene::FlockingScene() : 
@@ -79,7 +80,7 @@ bool FlockingScene::init() {
 
   cocos2d::Label* 
   label = 
-    cocos2d::Label::createWithTTF("Flocking Birds", "fonts/Marker Felt.ttf", 24);
+    cocos2d::Label::createWithTTF(Gamedata::getInstance().getXmlStr("screenTitle"), "fonts/Marker Felt.ttf", 24);
 
   label->setPosition(
     cocos2d::Vec2(origin.x + visibleSize.width/2,
@@ -87,18 +88,40 @@ bool FlockingScene::init() {
   );
   addChild(label, 1);
 
+  try{
+    CustomSprite* moon = new CustomSprite("moon");
+    moon->addToNode(this, 0);
+    drawables.push_back(moon);
+    
+    
+    MultiSprite* bird = new BidirectionalMultiSprite("grayBird");
+    bird->addToNode(this, 0);
+    drawables.push_back(bird); 
+    MultiSprite* rbird = new BidirectionalMultiSprite("redBird");
+    //rbird->addToNode(this, 0);
+    //drawables.push_back(rbird);
+    Flock* flock = new Flock("redBirds", rbird);
+    flock->addToNode(this, 0);
+    drawables.push_back(flock);
+    
+    
+    
+    
+    
+    
+  }catch(std::string ex){
+    removeChild(label);
+    cocos2d::Label* 
+    e = 
+      cocos2d::Label::createWithTTF(ex, "fonts/Marker Felt.ttf", 24);
 
-/*
-  cocos2d::Sprite* moon = cocos2d::Sprite::createWithSpriteFrameName("moon.png");
-  moon->setPosition(
-    cocos2d::Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y)
+    e->setPosition(
+      cocos2d::Vec2(origin.x + visibleSize.width/2,
+           origin.y + visibleSize.height - e->getContentSize().height)
     );
-  addChild(moon, 0);*/
-  
-  CustomSprite* moon = new CustomSprite("moon.png", cocos2d::Vec2(200,200), cocos2d::Vec2(250, 250));
-  moon->addToNode(this, 0);
-  drawables.push_back(moon);
-  
+    addChild(e, 1);
+  }
+  /*
   std::vector<std::string> birdFrames;
   birdFrames.reserve(4);
   birdFrames.push_back("redBird1.png");
@@ -107,10 +130,10 @@ bool FlockingScene::init() {
   birdFrames.push_back("redBird4.png");
   
   for(int i = 0; i < 100; ++i){
-  MultiSprite* bird = new BidirectionalMultiSprite(birdFrames, 0.2F, cocos2d::Vec2(50,50), cocos2d::Vec2(100+i,100+2*i));
+  MultiSprite* bird = new BidirectionalMultiSprite(birdFrames, 0.2F, cocos2d::Vec2(50,50), cocos2d::Vec2(100+i*20,100+5*i));
   bird->addToNode(this, 0);
   drawables.push_back(bird);
-  }
+  }*/
   
  //cocos2d::SpriteFrame* frame = cocos2d::SpriteFrameCache::getInstance()->getSpriteFrameByName("redBird1.png");
  

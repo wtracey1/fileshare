@@ -21,7 +21,7 @@ private:
   ParseXML parser;
   const map<std::string, std::string> gameData;
 
-  Gamedata(const std::string& fn = "xmlSpec/game.xml");
+  Gamedata(const std::string& fn = "../../../Resources/xmlSpec/game.xml");
   Gamedata(const Gamedata&);
   Gamedata& operator=(const Gamedata&);
 };

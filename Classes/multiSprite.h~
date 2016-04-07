@@ -3,11 +3,17 @@
 
 #include "cocos2d.h"
 #include "vector"
+#include "gamedata.h"
 #include "customSprite.h"
 
 class MultiSprite : public CustomSprite{
 public:
-  MultiSprite(const std::vector<std::string>&, float, cocos2d::Vec2, cocos2d::Vec2);
+  virtual MultiSprite* clone() const {
+    MultiSprite* copy = new MultiSprite(getName());
+    copy.setPosition(getPosition());
+    return copy;
+  }
+  MultiSprite(const std::string&);
   virtual void update(float);
   virtual ~MultiSprite(){}//EDIT
 };

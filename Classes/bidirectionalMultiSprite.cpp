@@ -1,6 +1,5 @@
 #include "cocos2d.h"
 #include "bidirectionalMultiSprite.h"
-#include "vector"
 #include "iostream"
 
 void BidirectionalMultiSprite::update(float dt){

@@ -3,12 +3,18 @@
 
 #include "cocos2d.h"
 #include "vector"
+#include "gamedata.h"
 #include "multiSprite.h"
 
 class BidirectionalMultiSprite : public MultiSprite{
 public:
-  BidirectionalMultiSprite(std::vector<std::string> frameNames, float speed, cocos2d::Vec2 pos, cocos2d::Vec2 vel) : 
-    MultiSprite::MultiSprite(frameNames, speed, pos, vel)
+  virtual BidirectionalMultiSprite* clone() const {
+    BidirectionalMultiSprite* copy = new BidirectionalMultiSprite(getName());
+    copy.setPosition(getPosition());
+    return copy;
+  }
+  BidirectionalMultiSprite(const std::string& name) : 
+    MultiSprite(name)
   {}
   virtual void update(float);
   //virtual ~BidirectionalMultiSprite(){}//EDIT

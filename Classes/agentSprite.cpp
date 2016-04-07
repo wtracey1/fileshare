@@ -1,8 +1,6 @@
-#include "flockingSprite.h"
+#include "flock.h"
 #include "agentSprite.h"
 #include "gamedata.h"
-#include "frameFactory.h"
-#include "vector2f.h"
 #include <iostream>
 #include <cmath>
 
@@ -10,21 +8,23 @@ AgentSprite::~AgentSprite(){
   delete baseSprite;
 }
 
-AgentSprite::AgentSprite(const CustomSprite& s, const cocos2d::Vec2 initPosition) :
+AgentSprite::AgentSprite(const CustomSprite& s) :
+  Drawable("flocking " + s.getName()),
   baseSprite(s.clone()),
-  speed(Gamedata::getInstance().getXmlInt(s.getName()+"/speed"), 
-              Gamedata::getInstance().getXmlInt(s.getName()+"/speed")),
+  speed(Gamedata::getInstance().getXmlInt(s.getName()+"/speed/x"), 
+              Gamedata::getInstance().getXmlInt(s.getName()+"/speed/y")),
   los(Gamedata::getInstance().getXmlInt(s.getName()+"/LoS"))
 { 
-  baseSprite->setPosition(initPosition);
 }
 AgentSprite::AgentSprite(const AgentSprite& s) :
+  Drawable(s),
   baseSprite(s.baseSprite->clone()),
   speed(Gamedata::getInstance().getXmlInt(s.getName()+"/speed"), 
             Gamedata::getInstance().getXmlInt(s.getName()+"/speed")),
   los(Gamedata::getInstance().getXmlInt(s.getName()+"/LoS"))
 { }
 //Utility functions to syncronize the position and velocity updating that occurs in the baseSprite and in the agentSprite wrapping it
+
 void AgentSprite::syncToBase(){
   baseSprite->setVelocity(getVelocity());
   baseSprite->setPosition(getPosition());
@@ -38,28 +38,40 @@ void AgentSprite::syncFromBase(){
   Cycle through flock computing cohesion, alignment, seperation and updating
 */
 void AgentSprite::update( const std::list<AgentSprite*>& flock, float alignmentFactor, float cohesionFactor, float seperationFactor, float ticks){
-  syncFromBase();
-
+  //syncFromBase();
+  
   //Could optimize and compute all in one loop through the flock rather than loops for each of alignment, cohesion, and seperation..
-  Vector2f alignment = computeAlignment(flock);
-  Vector2f cohesion = computeCohesion(flock);
-  Vector2f seperation = computeSeperation(flock);
-
-  setVelocity(getVelocity() + (alignmentFactor*alignment + cohesionFactor*cohesion + seperationFactor*seperation).cross(speed));
-  setVelocity(getVelocity().normalize().cross(speed));
-
-  syncToBase();
+  cocos2d::Vec2 alignment = computeAlignment(flock);
+  cocos2d::Vec2 cohesion = computeCohesion(flock);
+  cocos2d::Vec2 seperation = computeSeperation(flock);
+  /*std::cout << "Alignment:" << "(" << alignment.x << ", " << alignment.y << ")" << std::endl;
+  std::cout << "Cohesion:" << "(" << cohesion.x << ", " << cohesion.y << ")" << std::endl;
+  std::cout << "Seperation:" << "(" << seperation.x << ", " << seperation.y << ")" << std::endl;
+  std::cout << "CurrentVelocity:" << "(" << getVelocity().x << ", " << getVelocity().y << ")" << std::endl;*/
+  cocos2d::Vec2 newVelocity = (alignmentFactor*alignment + cohesionFactor*cohesion + seperationFactor*seperation);
+  newVelocity.scale(speed);
+  newVelocity = newVelocity + getVelocity();
+  //std::cout << "NewVelocity:" << "(" << newVelocity.x << ", " << newVelocity.y << ")" << std::endl;
+  //newVelocity.scale(speed);
+  
+  //setVelocity(getVelocity() + (alignmentFactor*alignment + cohesionFactor*cohesion + seperationFactor*seperation).scale(speed));
+  newVelocity.normalize();
+  newVelocity.scale(speed);
+  setVelocity(newVelocity);
+  //setVelocity(getVelocity().normalize().scale(speed));
+  
+  //syncToBase();
   update(ticks);
 }
 /*
   Compute alignment aspect of velocity, returns a normalized vector that includes the velocity of all neighboring agents
 */
-Vector2f AgentSprite::computeAlignment(const std::list<AgentSprite*>& flock){
-  Vector2f target;
+cocos2d::Vec2 AgentSprite::computeAlignment(const std::list<AgentSprite*>& flock){
+  cocos2d::Vec2 target;
   int neighbors = 0;
   std::list<AgentSprite*>::const_iterator ptr = flock.begin();
   while (ptr != flock.end()){
-    if((*ptr) != this && this->getDistance(*ptr) < los){//arbitrary atm
+    if((*ptr) != this && this->getDistance((*ptr)->getPosition()) < los){//agent is not this agent and is in the line of sight
       neighbors++;
       target += ((*ptr)->getVelocity());
     }
@@ -67,18 +79,19 @@ Vector2f AgentSprite::computeAlignment(const std::list<AgentSprite*>& flock){
   }
   if(neighbors == 0) return target;
   
-  target /= (neighbors);
-  return target.normalize();
+  target = target / (neighbors);
+  target.normalize();
+  return target;
 }
 /*
   Compute cohesion aspect of velocity, returns a normalized vector that includes the vectors in the direction of all neighboring agents
 */
-Vector2f AgentSprite::computeCohesion(const std::list<AgentSprite*>& flock){
-  Vector2f target;
+cocos2d::Vec2 AgentSprite::computeCohesion(const std::list<AgentSprite*>& flock){
+  cocos2d::Vec2 target;
   int neighbors = 0;
   std::list<AgentSprite*>::const_iterator ptr = flock.begin();
   while (ptr != flock.end()){
-    if((*ptr) != this && this->getDistance(*ptr) < los){//arbitrary atm
+    if((*ptr) != this && this->getDistance((*ptr)->getPosition()) < los){
       neighbors++;
       target += (*ptr)->getPosition();
     }
@@ -87,20 +100,20 @@ Vector2f AgentSprite::computeCohesion(const std::list<AgentSprite*>& flock){
   
   if(neighbors == 0) return target;
   
-  target /= neighbors;
+  target = target / neighbors;
   target = target - getPosition();
-  
-  return target.normalize();
+  target.normalize();
+  return target;
 }
 /*
   Compute seperation aspect of velocity, returns a normalized vector that includes the vectors in the opposite direction of all neighboring agents, weighted by closeness to the agent
 */
-Vector2f AgentSprite::computeSeperation(const std::list<AgentSprite*>& flock){
-  Vector2f target;
+cocos2d::Vec2 AgentSprite::computeSeperation(const std::list<AgentSprite*>& flock){
+  cocos2d::Vec2 target;
   int neighbors = 0;
   std::list<AgentSprite*>::const_iterator ptr = flock.begin();
   while (ptr != flock.end()){
-    if((*ptr) != this && this->getDistance(*ptr) < los){//arbitrary atm
+    if((*ptr) != this && this->getDistance((*ptr)->getPosition()) < los){
       neighbors++;
       target += (*ptr)->getPosition() - getPosition();
     }
@@ -109,10 +122,10 @@ Vector2f AgentSprite::computeSeperation(const std::list<AgentSprite*>& flock){
   
   if(neighbors == 0) return target;
   
-  target /= neighbors;
+  target = target / neighbors;
   target *= -1;
-  
-  return target.normalize();
+  target.normalize();
+  return target;
 }
 /*
   Update the base sprite (allows for use with any class is Sprite inheritance tree

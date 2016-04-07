@@ -1,13 +1,16 @@
 #include "cocos2d.h"
 #include "customSprite.h"
-
-CustomSprite::CustomSprite(const std::string& spriteName) : 
-  sprite( cocos2d::Sprite::createWithSpriteFrameName(spriteName) ),
+  //alignmentFactor(Gamedata::getInstance().getXmlInt(name+"/alignment")),
+CustomSprite::CustomSprite(const std::string& name) :
+  Drawable(name) 
+  sprite( cocos2d::Sprite::createWithSpriteFrameName(Gamedata::getInstance().getXmlStr(name+"/frame0")) ),
   viewSize( cocos2d::Director::getInstance()->getVisibleSize() ),
-  velocity( 0, 0 )
+  velocity( Gamedata::getInstance().getXmlInt(name+"/speed/x"),
+            Gamedata::getInstance().getXmlInt(name+"/speed/y") )
 {
-  sprite->setPosition(cocos2d::Vec2(viewSize.width/2, viewSize.height/2));
-}
+  sprite->setPosition(cocos2d::Vec2(Gamedata::getInstance().getXmlInt(name+"/position/x"),
+                                    Gamedata::getInstance().getXmlInt(name+"/position/y")));
+}/*
 CustomSprite::CustomSprite(const std::string& spriteName, cocos2d::Vec2 pos) : 
   sprite( cocos2d::Sprite::createWithSpriteFrameName(spriteName) ),
   viewSize( cocos2d::Director::getInstance()->getVisibleSize() ),
@@ -21,8 +24,11 @@ CustomSprite::CustomSprite(const std::string& spriteName, cocos2d::Vec2 pos, coc
   velocity(vel)
 {
   sprite->setPosition(pos);
-}
-//CustomSprite::CustomSprite(const CustomSprite& s){} //EDIT
+}*/
+/*CustomSprite::CustomSprite(const CustomSprite& s){
+  viewSize = s.viewSize;
+  
+}*/
 
 CustomSprite::~CustomSprite(){}
 

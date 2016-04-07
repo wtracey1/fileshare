@@ -14,8 +14,8 @@ void ParseXML::parseXML() {
   std::fstream in;
   in.open(filename.c_str(), std::ios::in);
   if (!in) { 
-    throw string("Cannot open xml file: ")+filename;
-    //throw int(8);
+    //throw string("Cannot open xml file: ")+filename;
+    throw int(8);
   }
 
   int length = 0;
