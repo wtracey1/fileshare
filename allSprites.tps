@@ -204,28 +204,16 @@
             <key type="filename">blueBird2.png</key>
             <key type="filename">blueBird3.png</key>
             <key type="filename">blueBird4.png</key>
-            <key type="filename">blueBird5.png</key>
-            <key type="filename">blueBird6.png</key>
-            <key type="filename">blueBird7.png</key>
-            <key type="filename">blueBird8.png</key>
             <key type="filename">grayBird1.png</key>
             <key type="filename">grayBird2.png</key>
             <key type="filename">grayBird3.png</key>
             <key type="filename">grayBird4.png</key>
-            <key type="filename">grayBird5.png</key>
-            <key type="filename">grayBird6.png</key>
-            <key type="filename">grayBird7.png</key>
-            <key type="filename">grayBird8.png</key>
             <key type="filename">moon.png</key>
             <key type="filename">pole.png</key>
             <key type="filename">redBird1.png</key>
             <key type="filename">redBird2.png</key>
             <key type="filename">redBird3.png</key>
             <key type="filename">redBird4.png</key>
-            <key type="filename">redBird5.png</key>
-            <key type="filename">redBird6.png</key>
-            <key type="filename">redBird7.png</key>
-            <key type="filename">redBird8.png</key>
             <key type="filename">sky.png</key>
             <key type="filename">skyline.png</key>
             <key type="filename">star1.png</key>
@@ -246,26 +234,14 @@
             <filename>blueBird2.png</filename>
             <filename>blueBird3.png</filename>
             <filename>blueBird4.png</filename>
-            <filename>blueBird5.png</filename>
-            <filename>blueBird6.png</filename>
-            <filename>blueBird7.png</filename>
-            <filename>blueBird8.png</filename>
             <filename>grayBird1.png</filename>
             <filename>grayBird2.png</filename>
             <filename>grayBird3.png</filename>
             <filename>grayBird4.png</filename>
-            <filename>grayBird5.png</filename>
-            <filename>grayBird6.png</filename>
-            <filename>grayBird7.png</filename>
-            <filename>grayBird8.png</filename>
             <filename>redBird1.png</filename>
             <filename>redBird2.png</filename>
             <filename>redBird3.png</filename>
             <filename>redBird4.png</filename>
-            <filename>redBird5.png</filename>
-            <filename>redBird6.png</filename>
-            <filename>redBird7.png</filename>
-            <filename>redBird8.png</filename>
             <filename>star1.png</filename>
             <filename>star2.png</filename>
             <filename>star3.png</filename>
