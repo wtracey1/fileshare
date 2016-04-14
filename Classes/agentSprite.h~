@@ -1,0 +1,50 @@
+#ifndef AGENTSPRITE__H
+#define AGENTSPRITE__H
+#include <string>
+#include <vector>
+#include "cocos2d.h"
+#include "customSprite.h"
+#include <list>
+
+class AgentSprite : public Drawable {
+public:
+  AgentSprite(const CustomSprite&);
+  ~AgentSprite();
+  virtual AgentSprite* clone() const { return new AgentSprite(*this);}
+  void update( const std::list<AgentSprite*>&, float, float, float, float);
+  void update(float);
+  virtual void addToNode(cocos2d::Node* node, int z = 0){
+    baseSprite->addToNode(node, z);
+  }
+  virtual void removeFromNode(cocos2d::Node* node){
+    baseSprite->removeFromNode(node);
+  } 
+  virtual void x(float x){baseSprite->x(x);}
+  virtual void y(float y){baseSprite->y(y);}
+  virtual float x() const {return baseSprite->x();}
+  virtual float y() const {return baseSprite->y();}
+  virtual void dx(float dx){baseSprite->dx(dx);}
+  virtual void dy(float dy){baseSprite->dy(dy);}
+  virtual float dx() const {return baseSprite->dx();}
+  virtual float dy() const {return baseSprite->dy();}
+  virtual void setPosition(cocos2d::Vec2 pos){baseSprite->setPosition(pos);}
+  virtual void setVelocity(cocos2d::Vec2 vel){baseSprite->setVelocity(vel);}
+  virtual cocos2d::Vec2 getPosition() const {return baseSprite->getPosition();}
+  virtual cocos2d::Vec2 getVelocity() const {return baseSprite->getVelocity();}
+  virtual cocos2d::Size getSpriteSize() const {return baseSprite->getSpriteSize();}
+  void removeFromParent(){baseSprite->removeFromParent();}
+  
+  
+private:
+  AgentSprite(const AgentSprite&);
+  CustomSprite* baseSprite;
+  const int speed;
+  int los;
+  AgentSprite& operator=(const AgentSprite&);
+  
+  cocos2d::Vec2 computeAlignment(const std::list<AgentSprite*>& flock);
+  cocos2d::Vec2 computeCohesion(const std::list<AgentSprite*>& flock);
+  cocos2d::Vec2 computeSeperation(const std::list<AgentSprite*>& flock);
+  cocos2d::Vec2 computeWallAvoidance();
+};
+#endif

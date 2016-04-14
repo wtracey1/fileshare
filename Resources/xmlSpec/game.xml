@@ -1,0 +1,109 @@
+<?xml version = "1.0"?>
+<GameData>
+<screenTitle>Weston Tracey's Flocking Birds</screenTitle>
+<view>
+  <name>Flocks</name>
+  <width>1900</width>
+  <height>900</height>
+  <!--<width>1024</width>
+  <height>768</height>-->
+</view>
+<world>
+  <width>1900</width>
+  <height>900</height>
+</world>
+
+<plistName>allSprites.plist</plistName>
+<frameCap>60</frameCap>
+<wallScaryness>10</wallScaryness>
+<twinkleLevel>2</twinkleLevel>
+
+<moon>
+<frame0>moon.png</frame0>
+  <position x="300" y="660"/>
+  <speed x="0" y = "0"/>
+</moon>
+<skyline>
+<frame0>skyline.png</frame0>
+  <position x="0" y="0"/>
+  <speed x="0" y = "0"/>
+</skyline>
+<sky>
+<frame0>sky.png</frame0>
+  <position x="0" y="0"/>
+  <speed x="0" y = "0"/>
+</sky>
+<star>
+  <frame0>star1.png</frame0>
+  <frame1>star2.png</frame1>
+  <frame2>star3.png</frame2>
+  <frame3>star4.png</frame3>
+  <position x="350" y="50"/>
+  <speed x="0" y="0"/>
+  <frameCount>4</frameCount>
+  <frameInterval>.8</frameInterval>
+</star>
+<windmill>
+<frame0>windmill.png</frame0>
+  <position x="600" y="150"/>
+  <speed x="0" y = "0"/>
+</windmill>
+<pole>
+<frame0>pole.png</frame0>
+  <position x="600" y="50"/>
+  <speed x="0" y = "0"/>
+</pole>
+<grayBirds>
+  <count>0</count>
+  <alignment>8</alignment>
+  <cohesion>8</cohesion>
+  <seperation>9</seperation>
+</grayBirds>
+<grayBird>
+  <frame0>grayBird1.png</frame0>
+  <frame1>grayBird2.png</frame1>
+  <frame2>grayBird3.png</frame2>
+  <frame3>grayBird4.png</frame3>
+  <position x="350" y="50"/>
+  <speed x="-100" y="100"/>
+  <frameCount>4</frameCount>
+  <frameInterval>0.1</frameInterval>
+  <LoS>50</LoS>
+</grayBird>
+
+<redBirds>
+  <count>50</count>
+  <alignment>5</alignment>
+  <cohesion>6</cohesion>
+  <seperation>7</seperation>
+</redBirds>
+<redBird>
+  <frame0>redBird1.png</frame0>
+  <frame1>redBird2.png</frame1>
+  <frame2>redBird3.png</frame2>
+  <frame3>redBird4.png</frame3>
+  <position x="350" y="700"/>
+  <speed x="200" y="200" />
+  <frameCount>4</frameCount>
+  <frameInterval>0.1</frameInterval>
+  <LoS>50</LoS>
+</redBird>
+<blueBirds>
+  <count>10</count>
+  <alignment>20</alignment>
+  <cohesion>30</cohesion>
+  <seperation>35</seperation>
+</blueBirds>
+<blueBird>
+  <frame0>blueBird1.png</frame0>
+  <frame1>blueBird2.png</frame1>
+  <frame2>blueBird3.png</frame2>
+  <frame3>blueBird4.png</frame3>
+  <position x="350" y="50"/>
+  <speed x="175" y="175" />
+  <frameCount>4</frameCount>
+  <frameInterval>.2</frameInterval>
+  <LoS>75</LoS>
+</blueBird>
+
+</GameData>
