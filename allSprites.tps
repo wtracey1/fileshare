@@ -208,6 +208,24 @@
             <key type="filename">grayBird2.png</key>
             <key type="filename">grayBird3.png</key>
             <key type="filename">grayBird4.png</key>
+            <key type="filename">images/player00.png</key>
+            <key type="filename">images/player04.png</key>
+            <key type="filename">images/player08.png</key>
+            <key type="filename">images/player12.png</key>
+            <key type="filename">images/player16.png</key>
+            <key type="filename">images/player20.png</key>
+            <key type="filename">images/player24.png</key>
+            <key type="filename">images/player28.png</key>
+            <key type="filename">images/player32.png</key>
+            <key type="filename">images/player36.png</key>
+            <key type="filename">images/player40.png</key>
+            <key type="filename">images/player44.png</key>
+            <key type="filename">images/player48.png</key>
+            <key type="filename">images/player52.png</key>
+            <key type="filename">images/player56.png</key>
+            <key type="filename">images/player60.png</key>
+            <key type="filename">images/player64.png</key>
+            <key type="filename">images/player68.png</key>
             <key type="filename">moon.png</key>
             <key type="filename">pole.png</key>
             <key type="filename">redBird1.png</key>
@@ -249,6 +267,24 @@
             <filename>sky.png</filename>
             <filename>pole.png</filename>
             <filename>windmill.png</filename>
+            <filename>images/player00.png</filename>
+            <filename>images/player04.png</filename>
+            <filename>images/player08.png</filename>
+            <filename>images/player12.png</filename>
+            <filename>images/player16.png</filename>
+            <filename>images/player20.png</filename>
+            <filename>images/player24.png</filename>
+            <filename>images/player28.png</filename>
+            <filename>images/player32.png</filename>
+            <filename>images/player36.png</filename>
+            <filename>images/player40.png</filename>
+            <filename>images/player44.png</filename>
+            <filename>images/player48.png</filename>
+            <filename>images/player52.png</filename>
+            <filename>images/player56.png</filename>
+            <filename>images/player60.png</filename>
+            <filename>images/player64.png</filename>
+            <filename>images/player68.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
