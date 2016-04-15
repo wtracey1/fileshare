@@ -226,19 +226,31 @@
             <key type="filename">images/test60.png</key>
             <key type="filename">images/test64.png</key>
             <key type="filename">images/test68.png</key>
+            <key type="filename">images/testbow00.png</key>
+            <key type="filename">images/testbow01.png</key>
+            <key type="filename">images/testbow02.png</key>
+            <key type="filename">images/testbow03.png</key>
+            <key type="filename">images/testbow04.png</key>
+            <key type="filename">images/testbow05.png</key>
+            <key type="filename">images/testbow06.png</key>
+            <key type="filename">images/testbow07.png</key>
+            <key type="filename">images/testbow08.png</key>
+            <key type="filename">images/testbow09.png</key>
+            <key type="filename">images/testbow10.png</key>
+            <key type="filename">images/testbow11.png</key>
+            <key type="filename">images/testbow12.png</key>
+            <key type="filename">images/testbow13.png</key>
+            <key type="filename">images/testbow14.png</key>
             <key type="filename">moon.png</key>
-            <key type="filename">pole.png</key>
             <key type="filename">redBird1.png</key>
             <key type="filename">redBird2.png</key>
             <key type="filename">redBird3.png</key>
             <key type="filename">redBird4.png</key>
-            <key type="filename">sky.png</key>
             <key type="filename">skyline.png</key>
             <key type="filename">star1.png</key>
             <key type="filename">star2.png</key>
             <key type="filename">star3.png</key>
             <key type="filename">star4.png</key>
-            <key type="filename">windmill.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -264,9 +276,6 @@
             <filename>star2.png</filename>
             <filename>star3.png</filename>
             <filename>star4.png</filename>
-            <filename>sky.png</filename>
-            <filename>pole.png</filename>
-            <filename>windmill.png</filename>
             <filename>images/test00.png</filename>
             <filename>images/test04.png</filename>
             <filename>images/test08.png</filename>
@@ -285,6 +294,21 @@
             <filename>images/test60.png</filename>
             <filename>images/test64.png</filename>
             <filename>images/test68.png</filename>
+            <filename>images/testbow00.png</filename>
+            <filename>images/testbow01.png</filename>
+            <filename>images/testbow02.png</filename>
+            <filename>images/testbow03.png</filename>
+            <filename>images/testbow04.png</filename>
+            <filename>images/testbow05.png</filename>
+            <filename>images/testbow06.png</filename>
+            <filename>images/testbow07.png</filename>
+            <filename>images/testbow08.png</filename>
+            <filename>images/testbow09.png</filename>
+            <filename>images/testbow10.png</filename>
+            <filename>images/testbow11.png</filename>
+            <filename>images/testbow12.png</filename>
+            <filename>images/testbow13.png</filename>
+            <filename>images/testbow14.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
