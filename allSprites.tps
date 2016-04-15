@@ -88,7 +88,7 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>2048</int>
+            <int>4096</int>
             <key>height</key>
             <int>2048</int>
         </QSize>
@@ -246,6 +246,7 @@
             <key type="filename">redBird2.png</key>
             <key type="filename">redBird3.png</key>
             <key type="filename">redBird4.png</key>
+            <key type="filename">sky.png</key>
             <key type="filename">skyline.png</key>
             <key type="filename">star1.png</key>
             <key type="filename">star2.png</key>
@@ -309,6 +310,7 @@
             <filename>images/testbow12.png</filename>
             <filename>images/testbow13.png</filename>
             <filename>images/testbow14.png</filename>
+            <filename>sky.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
