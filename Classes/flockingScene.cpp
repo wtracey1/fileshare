@@ -4,13 +4,15 @@
 #include "multiSprite.h"
 #include "bidirectionalMultiSprite.h"
 #include "flock.h"
+#include "player.h"
 #include <vector>
 
 FlockingScene::FlockingScene() :
   gd(Gamedata::getInstance()),
   visibleSize(),
   origin(),
-  drawables()
+  drawables(),
+  player(NULL)
 { }
 FlockingScene::~FlockingScene() { 
   std::list<Drawable*>::iterator ptr = drawables.begin();
@@ -25,7 +27,7 @@ void FlockingScene::update(float dt) {
   //setPositionX(getPositionX()+dt);
   std::list<Drawable*>::iterator ptr = drawables.begin();
   int starsToReplace = 0;
-  Drawable* windmill = *ptr;
+  //Drawable* windmill = *ptr;
   
   while(ptr != drawables.end()){
     //Occasionally remove stars, as per the project 4 specification
@@ -37,7 +39,7 @@ void FlockingScene::update(float dt) {
       //Kill the gray birds!
     }else if((*ptr)->getName() == "grayBirds"){
       (*ptr)->update(dt);
-      (*ptr)->handleCollisonWith(windmill);
+      //(*ptr)->handleCollisonWith(windmill);
       ++ptr;
     }else{
       (*ptr)->update(dt);
@@ -82,58 +84,45 @@ bool FlockingScene::init() {
   }
   cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile(
                                   Gamedata::getInstance().getXmlStr("plistName"));
-  cocos2d::Size 
-  visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
+  //cocos2d::Size 
+  //visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
   cocos2d::Vec2 
   origin = cocos2d::Director::getInstance()->getVisibleOrigin();
-/*
-  /////////////////////////////
-  // 2. add a menu item with "X" image, which is clicked to quit the program
-  //    you may modify it.
 
-  // add a "close" icon to exit the progress. it's an autorelease object
-  cocos2d::MenuItemImage* closeItem = cocos2d::MenuItemImage::create(
-                      "CloseNormal.png",
-                      "CloseSelected.png",
-                      CC_CALLBACK_1(FlockingScene::menuCloseCallback, this));
-    
-	closeItem->setPosition(
-    cocos2d::Vec2(origin.x + visibleSize.width - closeItem->getContentSize().width/2 ,
-         origin.y + closeItem->getContentSize().height/2)
-  );
 
-  // create menu, it's an autorelease object
-  cocos2d::Menu* menu = cocos2d::Menu::create(closeItem, NULL);
-  menu->setPosition(cocos2d::Vec2::ZERO);
-  this->addChild(menu, 1);
+  player = new Player("player");
+  player->addToNode(this,1);
+  drawables.push_back(player);
+  player->attachCamera(this);
 
-  /////////////////////////////
-  // 3. add your codes below...
 
-  cocos2d::Label* 
-  label = 
-    cocos2d::Label::createWithTTF(gd.getXmlStr("screenTitle"), "fonts/Marker Felt.ttf", 24);
+  cocos2d::EventListenerMouse* listener = cocos2d::EventListenerMouse::create();
 
-  label->setPosition(
-    cocos2d::Vec2(origin.x + visibleSize.width/2,
-         origin.y + visibleSize.height - label->getContentSize().height)
-  );
-  addChild(label, 1);
-*/
-  //This one is our special one!!
+  listener->onMouseMove = CC_CALLBACK_1(FlockingScene::onMouseMove, this);
+  listener->onMouseUp = CC_CALLBACK_1(FlockingScene::onMouseUp, this);
+  listener->onMouseDown = CC_CALLBACK_1(FlockingScene::onMouseDown, this);
+  listener->onMouseScroll = CC_CALLBACK_1(FlockingScene::onMouseScroll, this);
+  cocos2d::Director::getInstance()->getEventDispatcher()->
+    addEventListenerWithSceneGraphPriority(listener, this);
+
+
+
+
+
+  /*
   CustomSprite* windmill = new CustomSprite("windmill");
   windmill->addToNode(this,1);
   cocos2d::RepeatForever* rotateAction = 
     cocos2d::RepeatForever::create(cocos2d::RotateBy::create(1, 360));
   windmill->runAction(rotateAction);
   drawables.push_back(windmill);
-  
-  
+  */
+  /*
   CustomSprite* sky = new CustomSprite("sky");
   sky->setScale(2);
   sky->addToNode(this, 0);
   sky->setAnchorPoint(cocos2d::Vec2(0,0));
-  drawables.push_back(sky);
+  drawables.push_back(sky);*/
   CustomSprite* city = new CustomSprite("skyline");
   city->setScale(2);
   city->setAnchorPoint(cocos2d::Vec2(0,0));
@@ -156,17 +145,12 @@ bool FlockingScene::init() {
   moon->addToNode(this, 1);
   drawables.push_back(moon);
   
-  CustomSprite* pole = new CustomSprite("pole");
+  /*CustomSprite* pole = new CustomSprite("pole");
   pole->addToNode(this,0);
   drawables.push_back(pole);
+  */
   
-  BidirectionalMultiSprite* cameraGuy = new BidirectionalMultiSprite("grayBird");
-  cameraGuy->addToNode(this,1);
-  drawables.push_back(cameraGuy);
-  cameraGuy->attachCamera(this);
-  //this->runAction(Follow::create(testSprite, Rect( center.x - playfield_width/2, center.y - playfield_height/2 , playfield_width, playfield_height)));
- 
- 
+  
   Flock* grayflock = new Flock("grayBirds", BidirectionalMultiSprite("grayBird"));
   grayflock->addToNode(this, 1);
   drawables.push_back(grayflock);
@@ -186,6 +170,13 @@ bool FlockingScene::init() {
     
   return true;
 }
+void FlockingScene::onMouseDown(cocos2d::Event* event){std::cout << "Mouse Down!" << std::endl;}
+void FlockingScene::onMouseUp(cocos2d::Event* event){}
+void FlockingScene::onMouseMove(cocos2d::Event* event){
+  cocos2d::EventMouse* e = static_cast<cocos2d::EventMouse*>(event);
+  player->aim(cocos2d::Vec2(e->getCursorX(),e->getCursorY()));
+}
+void FlockingScene::onMouseScroll(cocos2d::Event* event){}
 
 
 void FlockingScene::menuCloseCallback(Ref* pSender) {

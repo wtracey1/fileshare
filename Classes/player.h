@@ -1,0 +1,21 @@
+#ifndef __PLAYER__
+#define __PLAYER__
+
+#include "cocos2d.h"
+#include "bidirectionalMultiSprite.h"
+#include "gamedata.h"
+#include "weapon.h"
+
+class Player : public BidirectionalMultiSprite
+{
+public:
+  Player(const std::string&);
+  void update(float);
+  //void addToNode(cocos2d::Node*, int);
+  void aim(const cocos2d::Vec2&);
+  Weapon* getWeapon(){ return &weapon; }
+private:
+  Weapon weapon;
+};
+
+#endif

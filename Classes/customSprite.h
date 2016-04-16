@@ -33,6 +33,7 @@ public:
   virtual cocos2d::Vec2 getPosition() const {return sprite->getPosition();}
   virtual cocos2d::Vec2 getVelocity() const {return velocity;}
   virtual cocos2d::Size getSpriteSize() const {return sprite->getContentSize();}
+  virtual cocos2d::Sprite* getSprite(){ return sprite; }
   void setAnchorPoint(cocos2d::Vec2 v) { sprite->setAnchorPoint(v);}
   void setScale(float s){sprite->setScale(s);}
   void runAction(cocos2d::Action* a) {sprite->runAction(a);}

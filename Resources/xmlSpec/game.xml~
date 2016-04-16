@@ -18,6 +18,7 @@
 <wallScaryness>10</wallScaryness>
 <twinkleLevel>2</twinkleLevel>
 
+
 <moon>
 <frame0>moon.png</frame0>
   <position x="300" y="660"/>
@@ -48,13 +49,62 @@
   <position x="600" y="150"/>
   <speed x="0" y = "0"/>
 </windmill>
+<player>
+  <frame0>test00.png</frame0>
+  <frame1>test04.png</frame1>
+  <frame2>test08.png</frame2>
+  <frame3>test12.png</frame3>
+  <frame4>test16.png</frame4>
+  <frame5>test20.png</frame5>
+  <frame6>test24.png</frame6>
+  <frame7>test28.png</frame7>
+  <frame8>test32.png</frame8>
+  <frame9>test36.png</frame9>
+  <frame10>test40.png</frame10>
+  <frame11>test44.png</frame11>
+  <frame12>test48.png</frame12>
+  <frame13>test52.png</frame13>
+  <frame14>test56.png</frame14>
+  <frame15>test60.png</frame15>
+  <frame16>test64.png</frame16>
+  <frame17>test68.png</frame17>
+  <frameCount>18</frameCount>
+  <frameInterval>0.1</frameInterval>
+  <rotate>false</rotate>
+  <invert>false</invert>
+  <position x="400" y="150"/>
+  <speed x="100" y = "0"/>
+</player>
+<bow>
+  <frame0>testbow00.png</frame0>
+  <frame1>testbow01.png</frame1>
+  <frame2>testbow02.png</frame2>
+  <frame3>testbow03.png</frame3>
+  <frame4>testbow04.png</frame4>
+  <frame5>testbow05.png</frame5>
+  <frame6>testbow06.png</frame6>
+  <frame7>testbow07.png</frame7>
+  <frame8>testbow08.png</frame8>
+  <frame9>testbow09.png</frame9>
+  <frame10>testbow10.png</frame10>
+  <frame11>testbow11.png</frame11>
+  <frame12>testbow12.png</frame12>
+  <frame13>testbow13.png</frame13>
+  <frame14>testbow14.png</frame14>
+  <frameCount>15</frameCount>
+  <frameInterval>0.2</frameInterval>
+  <rotate>false</rotate>
+  <invert>false</invert>
+  <position x="0" y="0"/>
+  <speed x="0" y = "0"/>
+</bow>
 <pole>
 <frame0>pole.png</frame0>
   <position x="600" y="50"/>
   <speed x="0" y = "0"/>
 </pole>
 <grayBirds>
-  <count>0</count>
+  <count>50</count>
   <alignment>8</alignment>
   <cohesion>8</cohesion>
   <seperation>9</seperation>
@@ -68,11 +118,13 @@
   <speed x="-100" y="100"/>
   <frameCount>4</frameCount>
   <frameInterval>0.1</frameInterval>
+  <rotate>true</rotate>
+  <invert>true</invert>
   <LoS>50</LoS>
 </grayBird>
 
 <redBirds>
-  <count>20</count>
+  <count>50</count>
   <alignment>5</alignment>
   <cohesion>6</cohesion>
   <seperation>7</seperation>
@@ -86,6 +138,8 @@
   <speed x="200" y="200" />
   <frameCount>4</frameCount>
   <frameInterval>0.1</frameInterval>
+  <rotate>true</rotate>
+  <invert>true</invert>
   <LoS>50</LoS>
 </redBird>
 <blueBirds>
@@ -103,6 +157,8 @@
   <speed x="175" y="175" />
   <frameCount>4</frameCount>
   <frameInterval>.2</frameInterval>
+  <rotate>true</rotate>
+  <invert>true</invert>
   <LoS>75</LoS>
 </blueBird>
 

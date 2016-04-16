@@ -12,7 +12,7 @@ class FlockingScene : public cocos2d::Layer
 public:
   FlockingScene();
   ~FlockingScene();
-  static cocos2d::Scene* createScene();
+  static cocos2d::Layer* createLayer();
   virtual bool init();
   void update(float);
     
@@ -20,6 +20,10 @@ public:
   void menuCloseCallback(cocos2d::Ref* pSender);
     
   // implement the "static create()" method manually
+  void onMouseDown(cocos2d::Event* event);
+  void onMouseUp(cocos2d::Event* event);
+  void onMouseMove(cocos2d::Event* event);
+  void onMouseScroll(cocos2d::Event* event);
   CREATE_FUNC(FlockingScene);
 
 private:
@@ -27,6 +31,7 @@ private:
   cocos2d::Size visibleSize;
   cocos2d::Point origin;
   std::list<Drawable*> drawables;
+  Player* player;
 };
 
 #endif

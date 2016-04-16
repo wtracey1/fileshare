@@ -1,13 +1,8 @@
-#include "cocos2d.h"
-#include "bidirectionalMultiSprite.h"
-#include "iostream"
-#include <cmath>
+#include "weapon.h"
 
-void BidirectionalMultiSprite::update(float dt){
-  MultiSprite::update(dt);
+void Weapon::aim(cocos2d::Vec2 aim){
   
-  int angle = static_cast<int>(CC_RADIANS_TO_DEGREES(getVelocity().getAngle()));
- 
+  int angle = static_cast<int>(CC_RADIANS_TO_DEGREES(aim.getAngle()));
   if(angle == 90 || angle == -90){ //moving vertical
   
   }else if(angle > 0 && angle < 90){ //moving up and right
@@ -33,5 +28,9 @@ void BidirectionalMultiSprite::update(float dt){
   if(!useRotate){
     sprite->setRotation(0);
   }
-  
+  if(sprite->isFlippedX()){
+    setAnchorPoint(cocos2d::Vec2(.75, .5));
+  }else{
+    setAnchorPoint(cocos2d::Vec2(.25, .5));
+  }
 }

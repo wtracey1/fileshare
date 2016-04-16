@@ -11,11 +11,22 @@ public:
   virtual BidirectionalMultiSprite* clone() const {
     BidirectionalMultiSprite* copy = new BidirectionalMultiSprite(getName());
     copy->setPosition(getPosition());
+    copy->useRotate = useRotate;
+    copy->invert = invert;
     return copy;
   }
-  BidirectionalMultiSprite(const std::string& name) : MultiSprite(name){}
-  BidirectionalMultiSprite(const BidirectionalMultiSprite& s) : MultiSprite(s){}
+  BidirectionalMultiSprite(const std::string& name) : 
+    MultiSprite(name), 
+    useRotate(Gamedata::getInstance().getXmlBool(name+"/rotate")),
+    invert(Gamedata::getInstance().getXmlBool(name+"/invert")){}
+  BidirectionalMultiSprite(const BidirectionalMultiSprite& s) : 
+    MultiSprite(s), 
+    useRotate(s.useRotate), 
+    invert(s.invert){}
   virtual void update(float);
   virtual ~BidirectionalMultiSprite(){}//EDIT
+protected:
+  bool useRotate;
+  bool invert; //invert = true means left is default image and right is flipped
 };
 #endif

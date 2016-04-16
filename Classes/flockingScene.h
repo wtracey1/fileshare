@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "drawable.h"
 #include "gamedata.h"
+#include "player.h"
 #include <list>
 //#include "star.h"
 
@@ -20,6 +21,10 @@ public:
   void menuCloseCallback(cocos2d::Ref* pSender);
     
   // implement the "static create()" method manually
+  void onMouseDown(cocos2d::Event* event);
+  void onMouseUp(cocos2d::Event* event);
+  void onMouseMove(cocos2d::Event* event);
+  void onMouseScroll(cocos2d::Event* event);
   CREATE_FUNC(FlockingScene);
 
 private:
@@ -27,6 +32,7 @@ private:
   cocos2d::Size visibleSize;
   cocos2d::Point origin;
   std::list<Drawable*> drawables;
+  Player* player;
 };
 
 #endif

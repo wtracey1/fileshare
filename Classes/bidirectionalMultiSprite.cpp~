@@ -11,22 +11,56 @@ void BidirectionalMultiSprite::update(float dt){
   if(angle == 90 || angle == -90){ //moving vertical
   
   }else if(angle > 0 && angle < 90){ //moving up and right
-    sprite->setFlippedX(true);
+    sprite->setFlippedX(invert);
+    cocos2d::Node* node = NULL;
+    CCARRAY_FOREACH(parent->getChildren(), node)
+    {
+        node->setFlippedX(invert);
+    }
     sprite->setRotation(-angle);
   }else if(angle > 90 && angle < 180){ //moving up and left
-    sprite->setFlippedX(false);
+    sprite->setFlippedX(!invert);
     sprite->setRotation(180-angle);
+    cocos2d::Node* node = NULL;
+    CCARRAY_FOREACH(parent->getChildren(), node)
+    {
+        node->setFlippedX(!invert);
+    }
   }else if(angle < 0 && angle > -90){ //moving down and right
-    sprite->setFlippedX(true);
+    sprite->setFlippedX(invert);
     sprite->setRotation(-angle);
+    cocos2d::Node* node = NULL;
+    CCARRAY_FOREACH(parent->getChildren(), node)
+    {
+        node->setFlippedX(invert);
+    }
   }else if(angle < -90 && angle > -180){  //moving down and left
-    sprite->setFlippedX(false);
+    sprite->setFlippedX(!invert);
     sprite->setRotation(-(180+angle));
+    cocos2d::Node* node = NULL;
+    CCARRAY_FOREACH(parent->getChildren(), node)
+    {
+        node->setFlippedX(!invert);
+    }
   }else if(angle == -180 || angle == 180){
-    sprite->setFlippedX(false);
+    sprite->setFlippedX(!invert);
     sprite->setRotation(0);
+    cocos2d::Node* node = NULL;
+    CCARRAY_FOREACH(parent->getChildren(), node)
+    {
+        node->setFlippedX(!invert);
+    }
   }else if(angle == 0){
-    sprite->setFlippedX(true);
+    sprite->setFlippedX(invert);
+    sprite->setRotation(0);
+    cocos2d::Node* node = NULL;
+    CCARRAY_FOREACH(parent->getChildren(), node)
+    {
+        node->setFlippedX(invert);
+    }
+  }
+  
+  if(!useRotate){
     sprite->setRotation(0);
   }
   
