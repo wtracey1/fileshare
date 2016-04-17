@@ -47,12 +47,25 @@ void FlockingScene::update(float dt) {
     }
   }
   
+  
+  
+  //////
+  std::list<Projectile*>& arrows = player->getProjectileList();
+  std::list<Projectile*>::iterator pptr = arrows.begin();
+  
+  while(pptr != arrows.end()){
+  (*pptr)->update(dt);
+      ++pptr;
+  }
+  //////////
+  
+  
   MultiSprite* star;
   //Replace stars, to further compliance with the project 4 specification
   for(int i = 0; i < starsToReplace; ++i){
       star = new MultiSprite("star");
-      star->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("view/width")));
-      star->y(gd.getRandInRange(275,Gamedata::getInstance().getXmlInt("view/height")));
+      star->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("world/width")));
+      star->y(gd.getRandInRange(275,Gamedata::getInstance().getXmlInt("world/height")));
       star->addToNode(this, 0);
       drawables.push_back(star);
   }
@@ -133,15 +146,15 @@ bool FlockingScene::init() {
   MultiSprite* star;
   for(int i = 0; i < 20; ++i){
     star = new MultiSprite("star");
-    star->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("view/width")));
-    star->y(gd.getRandInRange(275,Gamedata::getInstance().getXmlInt("view/height")));
+    star->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("world/width")));
+    star->y(gd.getRandInRange(275,Gamedata::getInstance().getXmlInt("world/height")));
     star->addToNode(this, 0);
     drawables.push_back(star);
   }
   
  
   CustomSprite* moon = new CustomSprite("moon");
-  moon->x(gd.getRandInRange(0,gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("view/width"))));
+  moon->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("world/width")));
   moon->addToNode(this, 1);
   drawables.push_back(moon);
   
@@ -170,7 +183,10 @@ bool FlockingScene::init() {
     
   return true;
 }
-void FlockingScene::onMouseDown(cocos2d::Event* event){std::cout << "Mouse Down!" << std::endl;}
+void FlockingScene::onMouseDown(cocos2d::Event* event){
+  cocos2d::EventMouse* e = static_cast<cocos2d::EventMouse*>(event);
+  player->fire(cocos2d::Vec2(e->getCursorX(),e->getCursorY()));
+}
 void FlockingScene::onMouseUp(cocos2d::Event* event){}
 void FlockingScene::onMouseMove(cocos2d::Event* event){
   cocos2d::EventMouse* e = static_cast<cocos2d::EventMouse*>(event);

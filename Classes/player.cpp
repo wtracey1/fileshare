@@ -12,11 +12,27 @@ Player::Player(const std::string& name) :
 
 void Player::update(float dt){
     BidirectionalMultiSprite::update(dt);
+    weapon.update(dt);
 }
 void Player::aim(const cocos2d::Vec2& mousePos){
-  std::cout << "mouse: " << mousePos.x << ", " << mousePos.y << std::endl;
-  cocos2d::Vec2 wepPos = sprite->convertToWorldSpaceAR(weapon.getPosition());
-  std::cout << "sprite: " << wepPos.x << ", " << wepPos.y << std::endl;
-  cocos2d::Vec2 aim(sprite->convertToWorldSpaceAR(weapon.getPosition()), mousePos + cocos2d::Vec2(0, 1024));
+  //std::cout << "mouse: " << mousePos.x << ", " << mousePos.y << std::endl;
+  //cocos2d::Vec2 wepPos = sprite->convertToWorldSpace(weapon.getPosition());
+  //std::cout << "sprite: " << wepPos.x << ", " << wepPos.y << std::endl;
+  cocos2d::Vec2 
+  aim(
+  sprite->convertToWorldSpace(weapon.getPosition()), 
+  mousePos + cocos2d::Vec2(0,Gamedata::getInstance().getXmlInt("view/height"))
+  );
+  //std::cout << "aim: " << aim.x << ", " << aim.y << std::endl;
+  
   weapon.aim(aim);
+}
+void Player::fire(const cocos2d::Vec2& mousePos){
+  cocos2d::Vec2 
+  aim(
+  sprite->convertToWorldSpace(weapon.getPosition()), 
+  mousePos + cocos2d::Vec2(0,Gamedata::getInstance().getXmlInt("view/height"))
+  );
+
+  weapon.fire(aim);
 }

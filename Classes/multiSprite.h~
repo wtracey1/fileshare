@@ -17,5 +17,6 @@ public:
   }
   virtual void update(float);
   virtual ~MultiSprite();
+private:
 };
 #endif

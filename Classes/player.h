@@ -12,7 +12,9 @@ public:
   Player(const std::string&);
   void update(float);
   //void addToNode(cocos2d::Node*, int);
+  std::list<Projectile*>& getProjectileList(){ return weapon.getProjectileList(); }
   void aim(const cocos2d::Vec2&);
+  void fire(const cocos2d::Vec2&);
   Weapon* getWeapon(){ return &weapon; }
 private:
   Weapon weapon;

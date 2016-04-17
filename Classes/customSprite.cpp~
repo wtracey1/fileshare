@@ -12,6 +12,9 @@ CustomSprite::CustomSprite(const std::string& name) :
 {
   sprite->setPosition(cocos2d::Vec2(Gamedata::getInstance().getXmlInt(name+"/position/x"),
                                     Gamedata::getInstance().getXmlInt(name+"/position/y")));
+  std::cout << "just set the fucking position of: " << name << std::endl;
+  float adsf = sprite->getPositionX();
+  std::cout << "just got its position too!!" << std::endl;
 }
 
 CustomSprite::CustomSprite(const CustomSprite& s) :
@@ -31,7 +34,7 @@ void CustomSprite::removeFromNode(cocos2d::Node* node){
   node->removeChild(sprite);
 }
 void CustomSprite::attachCamera(cocos2d::Node* layer){
-    layer->runAction(Follow::create(sprite, Rect( 0, 0 , worldSize.width, worldSize.height)));
+    layer->runAction(cocos2d::Follow::create(sprite, cocos2d::Rect( 0, 0 , worldSize.width, worldSize.height)));
   }
 
 void CustomSprite::update(float dt){

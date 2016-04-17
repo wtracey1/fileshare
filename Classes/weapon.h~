@@ -5,18 +5,26 @@
 #include "bidirectionalMultiSprite.h"
 #include "gamedata.h"
 #include "string"
+#include "projectile.h"
+#include <list>
+#include <vector>
 
 class Weapon : public BidirectionalMultiSprite
 {
 public:
-  Weapon(const string& name) :
-    BidirectionalMultiSprite(name)
-    {setVelocity(cocos2d::Vec2(0,0));};
-  ~Weapon(){};
-  void update(cocos2d::Vec2);
+  Weapon(const string& name);
+  ~Weapon();
+  void update(float dt);
+  void aim(const cocos2d::Vec2&);
+  void fire(const cocos2d::Vec2&);
   
 private:
+  string ammo;
+  int ammoCap;
+  std::vector<Projectile*> inactiveAmmo;
+  std::list<Projectile*> activeAmmo;
   
+  void runFireAnimation();
 };
 
 #endif
