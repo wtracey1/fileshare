@@ -27,12 +27,13 @@ void Player::aim(const cocos2d::Vec2& mousePos){
   
   weapon.aim(aim);
 }
-void Player::fire(const cocos2d::Vec2& mousePos){
+Projectile* Player::fire(const cocos2d::Vec2& mousePos){
+  cocos2d::Vec2 bowPosition = sprite->convertToWorldSpace(weapon.getPosition());
   cocos2d::Vec2 
   aim(
-  sprite->convertToWorldSpace(weapon.getPosition()), 
+  bowPosition, 
   mousePos + cocos2d::Vec2(0,Gamedata::getInstance().getXmlInt("view/height"))
   );
 
-  weapon.fire(aim);
+  return weapon.fire(aim, bowPosition);
 }

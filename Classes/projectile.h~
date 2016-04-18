@@ -10,14 +10,18 @@ class Projectile : public BidirectionalMultiSprite
 {
 public:
   Projectile(const string& name) :
-    BidirectionalMultiSprite(name)
+    BidirectionalMultiSprite(name),
+    speed(GameData::getInstance().getXmlInt(getName() + "/maxSpeed"))
     {
       sprite->retain();
     };
   ~Projectile(){sprite->release();};
   
+  void update(float);
+  void removeFromParent(){ sprite->removeFromParent(); }
+  int getSpeed(){ return speed; }
 private:
-  
+  int speed;
 };
 
 #endif

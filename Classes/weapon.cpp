@@ -29,6 +29,7 @@ Weapon::~Weapon(){
   }
 }
 void Weapon::update(float dt){
+  //Reclaim projectiles that have left the world bounds
   std::list<Projectile*>::iterator itr = activeAmmo.begin();
   itr = activeAmmo.begin();
   Projectile* p;
@@ -38,6 +39,7 @@ void Weapon::update(float dt){
     p = *itr;
     if(p->x() < 0 || p->x() > worldWidth || p->y() < 0 || p->y() > worldHeight){
       itr = activeAmmo.erase(itr);
+      p->removeFromParent();
       inactiveAmmo.push_back(p);
     }else{
       ++itr;
@@ -79,30 +81,26 @@ void Weapon::aim(const cocos2d::Vec2& direction){
   }
 }
 
-void Weapon::fire(const cocos2d::Vec2& direction){
+Projectile* Weapon::fire(const cocos2d::Vec2& direction, const cocos2d::Vec2& bowPosition){
   if(inactiveAmmo.empty()){
-    return;
+    return NULL;
   }
-  
   aim(direction);
   runFireAnimation();
+  
   Projectile*  p = inactiveAmmo.back();
   inactiveAmmo.pop_back();
-  //fire the thing
-  getSprite()->addChild(p->getSprite(),1);
-  p->x(0);
-  p->y(0);
+  
+  p->setPosition(bowPosition);
   cocos2d::Vec2 speed = direction;
   speed.normalize();
-  std::cout << "direction: " << speed.x << ", " << speed.y << std::endl;
-  std::cout << "Pvelocity: " << p->getVelocity().x << ", " << p->getVelocity().y << std::endl;
-  speed.scale(p->getVelocity());
+  speed.scale(p->getSpeed());
   
-  std::cout << "direction: " << speed.x << ", " << speed.y << std::endl;
   p->dx(speed.x);
   p->dy(speed.y);
   
   activeAmmo.push_back(p);
+  return p;
 }
 void Weapon::runFireAnimation(){
   int frameCount = Gamedata::getInstance().getXmlInt(getName()+"/animFrameCount");

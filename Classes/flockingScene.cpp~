@@ -24,22 +24,24 @@ FlockingScene::~FlockingScene() {
 }
 
 void FlockingScene::update(float dt) {
-  //setPositionX(getPositionX()+dt);
-  std::list<Drawable*>::iterator ptr = drawables.begin();
-  int starsToReplace = 0;
-  //Drawable* windmill = *ptr;
+  std::list<Projectile*>& arrows = player->getProjectileList();
+  std::list<Projectile*>::iterator pptr = arrows.begin();
+  while(pptr != arrows.end()){
+    (*pptr)->update(dt);
+    ++pptr;
+  }
   
+  std::list<Drawable*>::iterator ptr = drawables.begin();
   while(ptr != drawables.end()){
     //Occasionally remove stars, as per the project 4 specification
-    if((*ptr)->getName() == "star" && gd.getRandInRange(0,1000) < Gamedata::getInstance().getXmlInt("twinkleLevel")){
-      ++starsToReplace;
-      (*ptr)->removeFromNode(this);
-      delete *ptr;
-      ptr = drawables.erase(ptr);
-      //Kill the gray birds!
-    }else if((*ptr)->getName() == "grayBirds"){
+    string drawableName = (*ptr)->getName();
+    if(drawableName == "grayBirds" || drawableName == "grayBirds" || drawableName == "grayBirds"){
+      pptr = arrows.begin();
+      while(pptr != arrows.end()){
+        (*ptr)->handleCollisionWith(*pptr);
+        ++pptr;
+      }
       (*ptr)->update(dt);
-      //(*ptr)->handleCollisonWith(windmill);
       ++ptr;
     }else{
       (*ptr)->update(dt);
@@ -49,26 +51,16 @@ void FlockingScene::update(float dt) {
   
   
   
-  //////
+  /*
   std::list<Projectile*>& arrows = player->getProjectileList();
   std::list<Projectile*>::iterator pptr = arrows.begin();
   
   while(pptr != arrows.end()){
-  (*pptr)->update(dt);
-      ++pptr;
+    (*pptr)->update(dt);
+    
+    ++pptr;
   }
-  //////////
-  
-  
-  MultiSprite* star;
-  //Replace stars, to further compliance with the project 4 specification
-  for(int i = 0; i < starsToReplace; ++i){
-      star = new MultiSprite("star");
-      star->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("world/width")));
-      star->y(gd.getRandInRange(275,Gamedata::getInstance().getXmlInt("world/height")));
-      star->addToNode(this, 0);
-      drawables.push_back(star);
-  }
+  *//////////
 }
 
 
@@ -119,23 +111,11 @@ bool FlockingScene::init() {
     addEventListenerWithSceneGraphPriority(listener, this);
 
 
-
-
-
-  /*
-  CustomSprite* windmill = new CustomSprite("windmill");
-  windmill->addToNode(this,1);
-  cocos2d::RepeatForever* rotateAction = 
-    cocos2d::RepeatForever::create(cocos2d::RotateBy::create(1, 360));
-  windmill->runAction(rotateAction);
-  drawables.push_back(windmill);
-  */
-  /*
   CustomSprite* sky = new CustomSprite("sky");
   sky->setScale(2);
   sky->addToNode(this, 0);
   sky->setAnchorPoint(cocos2d::Vec2(0,0));
-  drawables.push_back(sky);*/
+  drawables.push_back(sky);
   CustomSprite* city = new CustomSprite("skyline");
   city->setScale(2);
   city->setAnchorPoint(cocos2d::Vec2(0,0));
@@ -146,8 +126,8 @@ bool FlockingScene::init() {
   MultiSprite* star;
   for(int i = 0; i < 20; ++i){
     star = new MultiSprite("star");
-    star->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("world/width")));
-    star->y(gd.getRandInRange(275,Gamedata::getInstance().getXmlInt("world/height")));
+    star->x(gd.getRandInRange(0,gd.getXmlInt("world/width")));
+    star->y(gd.getRandInRange(.3*gd.getXmlInt("world/height"),gd.getXmlInt("world/height")));
     star->addToNode(this, 0);
     drawables.push_back(star);
   }
@@ -157,11 +137,6 @@ bool FlockingScene::init() {
   moon->x(gd.getRandInRange(0,Gamedata::getInstance().getXmlInt("world/width")));
   moon->addToNode(this, 1);
   drawables.push_back(moon);
-  
-  /*CustomSprite* pole = new CustomSprite("pole");
-  pole->addToNode(this,0);
-  drawables.push_back(pole);
-  */
   
   
   Flock* grayflock = new Flock("grayBirds", BidirectionalMultiSprite("grayBird"));
@@ -185,7 +160,10 @@ bool FlockingScene::init() {
 }
 void FlockingScene::onMouseDown(cocos2d::Event* event){
   cocos2d::EventMouse* e = static_cast<cocos2d::EventMouse*>(event);
-  player->fire(cocos2d::Vec2(e->getCursorX(),e->getCursorY()));
+  Projectile* newProjectile = player->fire(cocos2d::Vec2(e->getCursorX(),e->getCursorY()));
+  if(newProjectile){
+    addChild(newProjectile->getSprite(), 1);
+  }
 }
 void FlockingScene::onMouseUp(cocos2d::Event* event){}
 void FlockingScene::onMouseMove(cocos2d::Event* event){

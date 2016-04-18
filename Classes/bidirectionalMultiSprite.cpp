@@ -5,7 +5,9 @@
 
 void BidirectionalMultiSprite::update(float dt){
   MultiSprite::update(dt);
-  
+  updateWithoutBaseCall(dt);
+}
+void BidirectionalMultiSprite::updateWithoutBaseCall(float dt){
   int angle = static_cast<int>(CC_RADIANS_TO_DEGREES(getVelocity().getAngle()));
  
   if(angle == 90 || angle == -90){ //moving vertical

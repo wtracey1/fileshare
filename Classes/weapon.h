@@ -17,7 +17,7 @@ public:
   void update(float dt);
   std::list<Projectile*>& getProjectileList(){ return activeAmmo; }
   void aim(const cocos2d::Vec2&);
-  void fire(const cocos2d::Vec2&);
+  Projectile* fire(const cocos2d::Vec2&, const cocos2d::Vec2&);
   
 private:
   string ammo;

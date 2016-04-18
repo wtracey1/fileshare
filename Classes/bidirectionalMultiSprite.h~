@@ -24,8 +24,9 @@ public:
     useRotate(s.useRotate), 
     invert(s.invert){}
   virtual void update(float);
+  virtual void BidirectionalMultiSprite::updateWithoutBaseCall(float);
   virtual ~BidirectionalMultiSprite(){}//EDIT
-private:
+protected:
   bool useRotate;
   bool invert; //invert = true means left is default image and right is flipped
 };
