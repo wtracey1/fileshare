@@ -6,6 +6,8 @@ MultiSprite::MultiSprite(const std::string& name) :
     CustomSprite(name)
 {
   int frameCount = Gamedata::getInstance().getXmlInt(name+"/frameCount");
+  if(frameCount <= 1)
+    return;
   float frameSpeed = Gamedata::getInstance().getXmlFloat(name+"/frameInterval");
   cocos2d::Vector<cocos2d::SpriteFrame*> frames;
   frames.reserve(frameCount);
@@ -28,6 +30,8 @@ MultiSprite::MultiSprite( const MultiSprite& s) :
 {
   std::string name = s.getName();
   int frameCount = Gamedata::getInstance().getXmlInt(name+"/frameCount");
+  if(frameCount <= 1)
+    return;
   float frameSpeed = Gamedata::getInstance().getXmlFloat(name+"/frameInterval");
   cocos2d::Vector<cocos2d::SpriteFrame*> frames;
   frames.reserve(frameCount);
@@ -44,25 +48,12 @@ MultiSprite::MultiSprite( const MultiSprite& s) :
   cocos2d::Animation* animation = cocos2d::Animation::createWithSpriteFrames(frames, frameSpeed);
   cocos2d::Animate* animate = cocos2d::Animate::create(animation);
   sprite->runAction(cocos2d::RepeatForever::create(animate));
+  //dummy.addChild(sprite,0);
 }
 
 
 MultiSprite::~MultiSprite(){
- /* if(sprite != NULL){
-    //sprite->stopAllActions();
-    //sprite->removeAllChildren();
-    //sprite->cleanup();
-    
-      std::cout << "1";
-    cocos2d::ActionManager* manager = sprite->getActionManager();
-    if(manager != NULL){
-      std::cout << "fuck";
-      manager->autorelease();
-      std::cout << "shit";
-    }
-  }else {
-    std::cout << "shit's null" << std::endl;
-  }*/
+  //dummy.removeChild(sprite);
 }
 void MultiSprite::update(float dt){
   CustomSprite::update(dt);

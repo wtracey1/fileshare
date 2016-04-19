@@ -5,6 +5,10 @@
 
 void BidirectionalMultiSprite::update(float dt){
   MultiSprite::update(dt);
+  updateWithoutBaseCall(dt);
+}
+void BidirectionalMultiSprite::updateWithoutBaseCall(float dt){
+  MultiSprite::update(dt);
   
   int angle = static_cast<int>(CC_RADIANS_TO_DEGREES(getVelocity().getAngle()));
  
@@ -12,52 +16,22 @@ void BidirectionalMultiSprite::update(float dt){
   
   }else if(angle > 0 && angle < 90){ //moving up and right
     sprite->setFlippedX(invert);
-    cocos2d::Node* node = NULL;
-    CCARRAY_FOREACH(parent->getChildren(), node)
-    {
-        node->setFlippedX(invert);
-    }
     sprite->setRotation(-angle);
   }else if(angle > 90 && angle < 180){ //moving up and left
     sprite->setFlippedX(!invert);
     sprite->setRotation(180-angle);
-    cocos2d::Node* node = NULL;
-    CCARRAY_FOREACH(parent->getChildren(), node)
-    {
-        node->setFlippedX(!invert);
-    }
   }else if(angle < 0 && angle > -90){ //moving down and right
     sprite->setFlippedX(invert);
     sprite->setRotation(-angle);
-    cocos2d::Node* node = NULL;
-    CCARRAY_FOREACH(parent->getChildren(), node)
-    {
-        node->setFlippedX(invert);
-    }
   }else if(angle < -90 && angle > -180){  //moving down and left
     sprite->setFlippedX(!invert);
     sprite->setRotation(-(180+angle));
-    cocos2d::Node* node = NULL;
-    CCARRAY_FOREACH(parent->getChildren(), node)
-    {
-        node->setFlippedX(!invert);
-    }
   }else if(angle == -180 || angle == 180){
     sprite->setFlippedX(!invert);
     sprite->setRotation(0);
-    cocos2d::Node* node = NULL;
-    CCARRAY_FOREACH(parent->getChildren(), node)
-    {
-        node->setFlippedX(!invert);
-    }
   }else if(angle == 0){
     sprite->setFlippedX(invert);
     sprite->setRotation(0);
-    cocos2d::Node* node = NULL;
-    CCARRAY_FOREACH(parent->getChildren(), node)
-    {
-        node->setFlippedX(invert);
-    }
   }
   
   if(!useRotate){

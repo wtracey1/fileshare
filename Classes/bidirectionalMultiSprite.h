@@ -24,6 +24,7 @@ public:
     useRotate(s.useRotate), 
     invert(s.invert){}
   virtual void update(float);
+  virtual void updateWithoutBaseCall(float);
   virtual ~BidirectionalMultiSprite(){}//EDIT
 protected:
   bool useRotate;

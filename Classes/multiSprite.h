@@ -18,6 +18,5 @@ public:
   virtual void update(float);
   virtual ~MultiSprite();
 private:
-  cocos2d::Node dummy;
 };
 #endif

@@ -1,0 +1,12 @@
+#include "projectile.h"
+
+void Projectile::update(float dt){
+  cocos2d::Vec2 newPosition = sprite->getPosition();
+  //cocos2d::Vec2 incr = getVelocity() * dt;
+  newPosition.add(getVelocity() * dt);
+  dy(dy()-getSpeed()*.5);
+  sprite->setPosition(newPosition);
+
+  
+  BidirectionalMultiSprite::updateWithoutBaseCall(dt);
+}
