@@ -209,6 +209,7 @@
             <key type="filename">grayBird3.png</key>
             <key type="filename">grayBird4.png</key>
             <key type="filename">images/arrow.png</key>
+            <key type="filename">images/dot.bmp</key>
             <key type="filename">images/test00.png</key>
             <key type="filename">images/test04.png</key>
             <key type="filename">images/test08.png</key>
@@ -313,6 +314,7 @@
             <filename>images/testbow14.png</filename>
             <filename>sky.png</filename>
             <filename>images/arrow.png</filename>
+            <filename>images/dot.bmp</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
